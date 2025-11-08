@@ -1,6 +1,9 @@
-group 'com.alexmercerind.flutter_media_metadata'
+group 'com.guinpereira.flutter_media_metadata'
 version '1.0'
 
+// ===============================================================
+// 🎯 Buildscript — define o plugin Gradle Android
+// ===============================================================
 buildscript {
     repositories {
         google()
@@ -8,11 +11,14 @@ buildscript {
     }
 
     dependencies {
-        // Atualizado para AGP 8.1.1 (compatível com Gradle 8 e Flutter 3.x)
-        classpath 'com.android.tools.build:gradle:8.1.1'
+        // ✅ AGP atualizado e estável (compatível com Gradle 8.7 e Flutter 3.27)
+        classpath 'com.android.tools.build:gradle:8.5.2'
     }
 }
 
+// ===============================================================
+// 🌐 Repositórios globais
+// ===============================================================
 rootProject.allprojects {
     repositories {
         google()
@@ -20,26 +26,39 @@ rootProject.allprojects {
     }
 }
 
+// ===============================================================
+// 🧱 Configuração principal do plugin Android Library
+// ===============================================================
 apply plugin: 'com.android.library'
 
 android {
-    // Namespace obrigatório para AGP 8+
+    // ✅ Namespace obrigatório para AGP 8+
     namespace "com.github.guinpereira.flutter_media_metadata"
 
-    // Atualizado para Android 14 (API 34)
+    // ✅ Android 14 (API 34)
     compileSdkVersion 34
 
     defaultConfig {
-        // minSdk ajustado para 21 (mínimo recomendado para plugins modernos)
+        // ✅ Mínimo compatível com Android 5.0+
         minSdkVersion 21
     }
 
+    // 🔧 Evita erros de pacotes inválidos
     lintOptions {
         disable 'InvalidPackage'
     }
+
+    // ✅ Garante compatibilidade com build moderno
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
 }
 
+// ===============================================================
+// 📦 Dependências
+// ===============================================================
 dependencies {
-    // Dependência necessária para retrofuture
+    // ✅ Necessário para tarefas assíncronas (retrocompatibilidade)
     implementation 'net.sourceforge.streamsupport:android-retrofuture:1.7.4'
 }
