@@ -8,7 +8,8 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.2.1'
+        // Atualizado para AGP 8.1.1 (compatível com Gradle 8 e Flutter 3.x)
+        classpath 'com.android.tools.build:gradle:8.1.1'
     }
 }
 
@@ -22,19 +23,23 @@ rootProject.allprojects {
 apply plugin: 'com.android.library'
 
 android {
+    // Namespace obrigatório para AGP 8+
     namespace "com.github.guinpereira.flutter_media_metadata"
-    compileSdkVersion 32
+
+    // Atualizado para Android 14 (API 34)
+    compileSdkVersion 34
 
     defaultConfig {
-        minSdkVersion 16
+        // minSdk ajustado para 21 (mínimo recomendado para plugins modernos)
+        minSdkVersion 21
     }
+
     lintOptions {
         disable 'InvalidPackage'
     }
-    dependencies {
-        // compile 'net.sourceforge.streamsupport:android-retrofuture:1.7.2'
-        implementation 'net.sourceforge.streamsupport:android-retrofuture:1.7.4'
+}
 
-    }
-    
+dependencies {
+    // Dependência necessária para retrofuture
+    implementation 'net.sourceforge.streamsupport:android-retrofuture:1.7.4'
 }
